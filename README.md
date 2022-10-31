@@ -2,6 +2,14 @@
 
 [Katie](https://ukatie.com) is using [Weaviate](https://weaviate.io/developers/weaviate/current/) to detect duplicated questions.
 
+## Setup
+
+* Install Weaviate: https://weaviate.io/developers/weaviate/current/installation/docker-compose.html
+* Configure persistent volume: https://weaviate.io/developers/weaviate/current/installation/docker-compose.html#persistent-volume
+* Run Weaviate: docker-compose up
+* Test Weaviate: http://localhost:8080/v1
+* Add Schema using the shell script described below
+
 ## Schema
 
 Here is a shell script that we use to set the schema
