@@ -1,6 +1,6 @@
 # Katie Weaviate
 
-[Katie](https://ukatie.com) is using [Weaviate](https://www.semi.technology/developers/weaviate/current/) to detect duplicated questions.
+[Katie](https://ukatie.com) is using [Weaviate](https://weaviate.io/developers/weaviate/current/) to detect duplicated questions.
 
 ## Schema
 
