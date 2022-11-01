@@ -5,6 +5,8 @@
 ## Setup
 
 * Install Weaviate: https://weaviate.io/developers/weaviate/current/installation/docker-compose.html
+    * semitechnologies/transformers-inference (sentence-transformers-multi-qa-MiniLM-L6-cos-v1)
+    * semitechnologies/qna-transformers (distilbert-base-uncased-distilled-squad)
 * Configure persistent volume: https://weaviate.io/developers/weaviate/current/installation/docker-compose.html#persistent-volume
 * Run Weaviate: docker-compose up
 * Test Weaviate: http://localhost:8080/v1
