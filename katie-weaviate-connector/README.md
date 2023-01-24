@@ -41,8 +41,8 @@ Katie Weaviate Connector webapp, in order to connect Katie with Weaviate using R
 
 * Start IntelliJ
 * File -> New -> Project from Version Control -> Git
-** https://github.com/wyona/katie-weaviate
-*** https://github.com/wyona/katie-weaviate.git
+    * https://github.com/wyona/katie-weaviate
+    * https://github.com/wyona/katie-weaviate.git
 * Set JDK (see Version above)
 * Reimport All Maven Projects
 * Run clean/install
