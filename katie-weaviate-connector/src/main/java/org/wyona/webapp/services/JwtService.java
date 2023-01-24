@@ -15,12 +15,50 @@ import java.util.Base64;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Slf4j
 @Component
 public class JwtService {
 
     @Autowired
     public JwtService() {
+    }
+
+    /**
+     * Check authorization of request
+     * @return true when authorized and false otherwise
+     */
+    public boolean isAuthorized(HttpServletRequest request) {
+        String jwtToken = getJWT(request);
+        if (jwtToken == null) {
+            return false;
+        }
+        log.info("Issuer: " + getPayloadValue(jwtToken, "iss"));
+        // TODO: Retrieve public key from https://ukatie.com/swagger-ui/#/authentication-controller/getJWTPublicKeyUsingGET
+        if (isJWTValid(jwtToken, null)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Get JWT from Authorization request header
+     */
+    private String getJWT(HttpServletRequest request) {
+        String authorizationHeader = request.getHeader("Authorization");
+        if (authorizationHeader != null) {
+            if (authorizationHeader.indexOf("Bearer") >= 0) {
+                return authorizationHeader.substring("Bearer".length()).trim();
+            } else {
+                log.warn("Authorization header does not contain prefix 'Bearer'.");
+                return null;
+            }
+        } else {
+            log.warn("No Authorization header.");
+            return null;
+        }
     }
 
     /**

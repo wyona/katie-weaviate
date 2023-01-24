@@ -52,7 +52,7 @@ public class KatieMockupConnectorController implements KatieConnectorController 
             @ApiImplicitParam(name = "Authorization", value = "Bearer JWT",
                     required = false, dataType = "string", paramType = "header") })
     public ResponseEntity<String> createTenant(@RequestBody Domain domain, HttpServletRequest request) {
-        if (!isAuthorized(request)) {
+        if (!jwtService.isAuthorized(request)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
@@ -73,7 +73,7 @@ public class KatieMockupConnectorController implements KatieConnectorController 
             @PathVariable(name = "domain-id", required = true) String domainId,
             HttpServletRequest request
     ){
-        if (!isAuthorized(request)) {
+        if (!jwtService.isAuthorized(request)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
@@ -95,7 +95,7 @@ public class KatieMockupConnectorController implements KatieConnectorController 
             @PathVariable(name = "domain-id", required = true) String domainId,
             HttpServletRequest request
     ) {
-        if (!isAuthorized(request)) {
+        if (!jwtService.isAuthorized(request)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
@@ -117,7 +117,7 @@ public class KatieMockupConnectorController implements KatieConnectorController 
             @PathVariable(name = "domain-id", required = true) String domainId,
             HttpServletRequest request
     ) {
-        if (!isAuthorized(request)) {
+        if (!jwtService.isAuthorized(request)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
@@ -141,47 +141,11 @@ public class KatieMockupConnectorController implements KatieConnectorController 
             @PathVariable(name = "uuid", required = true) String uuid,
             HttpServletRequest request
     ) {
-        if (!isAuthorized(request)) {
+        if (!jwtService.isAuthorized(request)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
         log.info("TODO: Delete QnA '" + uuid + "' ...");
         return new ResponseEntity<>("{}", HttpStatus.OK);
-    }
-
-    /**
-     * Check authorization of request
-     * @return true when authorized and false otherwise
-     */
-    private boolean isAuthorized(HttpServletRequest request) {
-        String jwtToken = getJWT(request);
-        if (jwtToken == null) {
-            return false;
-        }
-        log.info("Issuer: " + jwtService.getPayloadValue(jwtToken, "iss"));
-        // TODO: Retrieve public key from https://ukatie.com/swagger-ui/#/authentication-controller/getJWTPublicKeyUsingGET
-        if (jwtService.isJWTValid(jwtToken, null)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Get JWT from Authorization request header
-     */
-    private String getJWT(HttpServletRequest request) {
-        String authorizationHeader = request.getHeader("Authorization");
-        if (authorizationHeader != null) {
-            if (authorizationHeader.indexOf("Bearer") >= 0) {
-                return authorizationHeader.substring("Bearer".length()).trim();
-            } else {
-                log.warn("Authorization header does not contain prefix 'Bearer'.");
-                return null;
-            }
-        } else {
-            log.warn("No Authorization header.");
-            return null;
-        }
     }
 }
