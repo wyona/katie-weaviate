@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.wyona.webapp.controllers.KatieConnectorController;
 import org.wyona.webapp.models.katie.Answer;
 import org.wyona.webapp.models.katie.Domain;
 import org.wyona.webapp.models.katie.QnA;
