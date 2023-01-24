@@ -1,11 +1,8 @@
-README
-======
+# Katie Weaviate Connector
 
-Minimal Spring Boot based RESTful 'Hello World' example, including Swagger (using Springfox) and Docker
-(Also see https://spring.io/guides/gs/rest-service/)
+Katie Weaviate Connector webapp, in order to connect Katie with Weaviate using REST interfaces
 
-Requirements
-------------
+## Requirements
 
 * JDK: 1.11 (e.g. on Mac OS X: export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.11.jdk/Contents/Home)
 * Maven version: 3.3.3 (Please double check Maven .m2/settings.xml)
@@ -13,26 +10,22 @@ Requirements
 * or Docker (please see below)
 * or from command line
 
-Configuration
--------------
+## Configuration
 
 * Configure mail server inside src/main/resources/application.properties
 
-Build and deploy inside Tomcat
-------------------------------
+## Build and deploy inside Tomcat
 
 * sh build.sh
 * http://127.0.0.1:8080/katie-weaviate-connector-1.0.0-SNAPSHOT/
 
-Build and run from command line
--------------------------------
+## Build and run from command line
 
 * mvn clean install
 * java -jar target/katie-weaviate-connector-1.0.0-SNAPSHOT.war
 * http://localhost:8383/ (see server.port inside src/main/resources/application.properties)
 
-Docker
-------
+## Docker
 
 * Build webapp as jar file (see pom.xml)
 * Start Docker
@@ -44,13 +37,7 @@ Docker
 * Stop specific docker process: docker stop CONTAINER ID
 * Request in browser: http://127.0.0.1:8383/swagger-ui.html
 
-Specification and Testing
--------------------------
-
-https://www.yulup.com/en/projects/fe937e1d-3bb4-4012-a963-04848bd955ba/index.html
-
-IntelliJ IDEA
--------------
+## IntelliJ IDEA
 
 * Start IntelliJ
 * File -> New -> Project from Version Control -> Git
