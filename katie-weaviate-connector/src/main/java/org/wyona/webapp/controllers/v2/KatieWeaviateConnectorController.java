@@ -37,13 +37,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
- * 'Katie Mockup Connector' Controller
+ * 'Katie Weaviate Connector' Controller
  */
 @Slf4j
 @RestController
 @RequestMapping(value = "/api/v2")
 //@AllArgsConstructor
-public class KatieMockupConnectorController implements KatieConnectorController {
+public class KatieWeaviateConnectorController implements KatieConnectorController {
 
     @Value("${weaviate.host}")
     private String weaviateHost;
