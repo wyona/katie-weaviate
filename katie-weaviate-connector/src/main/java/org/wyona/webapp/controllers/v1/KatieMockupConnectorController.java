@@ -33,18 +33,6 @@ import javax.servlet.http.HttpServletRequest;
 //@AllArgsConstructor
 public class KatieMockupConnectorController implements KatieConnectorController {
 
-    @Value("${weaviate.host}")
-    private String weaviateHost;
-
-    @Value("${weaviate.protocol}")
-    private String weaviateProtocol;
-
-    @Value("${weaviate.basic.auth.username}")
-    private String basicAuthUsername;
-
-    @Value("${weaviate.basic.auth.password}")
-    private String basicAuthPassword;
-
     @Autowired
     JwtService jwtService;
 
@@ -56,7 +44,7 @@ public class KatieMockupConnectorController implements KatieConnectorController 
     private static final String FIELD_TENANT = "tenant";
 
     /**
-     * @see org.wyona.webapp.controllers.v2.KatieConnectorController#createTenant(Domain, HttpServletRequest)
+     * @see org.wyona.webapp.controllers.KatieConnectorController#createTenant(Domain, HttpServletRequest)
      */
     @PostMapping("/tenant")
     @ApiOperation(value = "Create tenant")
@@ -73,7 +61,7 @@ public class KatieMockupConnectorController implements KatieConnectorController 
     }
 
     /**
-     * @see org.wyona.webapp.controllers.v2.KatieConnectorController#deleteTenant(String, HttpServletRequest)
+     * @see org.wyona.webapp.controllers.KatieConnectorController#deleteTenant(String, HttpServletRequest)
      */
     @DeleteMapping("/tenant/{domain-id}")
     @ApiOperation(value = "Delete tenant")
@@ -94,7 +82,7 @@ public class KatieMockupConnectorController implements KatieConnectorController 
     }
 
     /**
-     * @see org.wyona.webapp.controllers.v2.KatieConnectorController#train(QnA, String, HttpServletRequest)
+     * @see org.wyona.webapp.controllers.KatieConnectorController#train(QnA, String, HttpServletRequest)
      */
     @PostMapping("/qna/{domain-id}")
     @ApiOperation(value = "Add QnA")
@@ -116,7 +104,7 @@ public class KatieMockupConnectorController implements KatieConnectorController 
     }
 
     /**
-     * @see org.wyona.webapp.controllers.v2.KatieConnectorController#getAnswers(Sentence, String, HttpServletRequest)
+     * @see org.wyona.webapp.controllers.KatieConnectorController#getAnswers(Sentence, String, HttpServletRequest)
      */
     @PostMapping("/ask/{domain-id}")
     @ApiOperation(value = "Ask question")
@@ -139,7 +127,7 @@ public class KatieMockupConnectorController implements KatieConnectorController 
     }
 
     /**
-     * @see org.wyona.webapp.controllers.v2.KatieConnectorController#deleteQnA(String, String, HttpServletRequest)
+     * @see org.wyona.webapp.controllers.KatieConnectorController#deleteQnA(String, String, HttpServletRequest)
      */
     @DeleteMapping("/qna/{domain-id}/{uuid}")
     @ApiOperation(value = "Delete QnA")

@@ -69,7 +69,7 @@ public class KatieWeaviateConnectorController implements KatieConnectorControlle
     private static final String FIELD_TENANT = "tenant";
 
     /**
-     * @see org.wyona.webapp.controllers.v2.KatieConnectorController#createTenant(Domain, HttpServletRequest)
+     * @see org.wyona.webapp.controllers.KatieConnectorController#createTenant(Domain, HttpServletRequest)
      */
     @PostMapping("/tenant")
     @ApiOperation(value = "Create tenant")
@@ -82,13 +82,10 @@ public class KatieWeaviateConnectorController implements KatieConnectorControlle
         }
 
         return createTenantWeaviateImpl(domain);
-
-        //log.info("TODO: Create tenant associated with Katie domain ID '" + domain.getId() + "' ...");
-        //return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 
     /**
-     * @see org.wyona.webapp.controllers.v2.KatieConnectorController#deleteTenant(String, HttpServletRequest)
+     * @see org.wyona.webapp.controllers.KatieConnectorController#deleteTenant(String, HttpServletRequest)
      */
     @DeleteMapping("/tenant/{domain-id}")
     @ApiOperation(value = "Delete tenant")
@@ -105,13 +102,10 @@ public class KatieWeaviateConnectorController implements KatieConnectorControlle
         }
 
         return deleteTenantWeaviateImpl(domainId);
-
-        //log.info("TODO: Delete tenant associated with Katie domain ID '" + domainId + "' ...");
-        //return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
-     * @see org.wyona.webapp.controllers.v2.KatieConnectorController#train(QnA, String, HttpServletRequest)
+     * @see org.wyona.webapp.controllers.KatieConnectorController#train(QnA, String, HttpServletRequest)
      */
     @PostMapping("/qna/{domain-id}")
     @ApiOperation(value = "Add QnA")
@@ -129,13 +123,10 @@ public class KatieWeaviateConnectorController implements KatieConnectorControlle
         }
 
         return trainWeaviateImpl(qna, domainId);
-
-        //log.info("TODO: Train QnA ...");
-        //return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 
     /**
-     * @see org.wyona.webapp.controllers.v2.KatieConnectorController#getAnswers(Sentence, String, HttpServletRequest)
+     * @see org.wyona.webapp.controllers.KatieConnectorController#getAnswers(Sentence, String, HttpServletRequest)
      */
     @PostMapping("/ask/{domain-id}")
     @ApiOperation(value = "Ask question")
@@ -153,13 +144,10 @@ public class KatieWeaviateConnectorController implements KatieConnectorControlle
         }
 
         return getAnswersWeaviateImpl(question, domainId);
-
-        //log.info("TODO: Get answers to question '" + question.getText() + "' ...");
-        //return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 
     /**
-     * @see org.wyona.webapp.controllers.v2.KatieConnectorController#deleteQnA(String, String, HttpServletRequest)
+     * @see org.wyona.webapp.controllers.KatieConnectorController#deleteQnA(String, String, HttpServletRequest)
      */
     @DeleteMapping("/qna/{domain-id}/{uuid}")
     @ApiOperation(value = "Delete QnA")
@@ -178,9 +166,6 @@ public class KatieWeaviateConnectorController implements KatieConnectorControlle
         }
 
         return deleteQnAWeaviateImpl(domainId, uuid);
-
-        //log.info("TODO: Delete QnA '" + uuid + "' ...");
-        //return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 
     /**
@@ -198,6 +183,25 @@ public class KatieWeaviateConnectorController implements KatieConnectorControlle
             return true;
         } else {
             return false;
+        }
+    }
+
+
+    /**
+     * Get JWT from Authorization request header
+     */
+    private String getJWT(HttpServletRequest request) {
+        String authorizationHeader = request.getHeader("Authorization");
+        if (authorizationHeader != null) {
+            if (authorizationHeader.indexOf("Bearer") >= 0) {
+                return authorizationHeader.substring("Bearer".length()).trim();
+            } else {
+                log.warn("Authorization header does not contain prefix 'Bearer'.");
+                return null;
+            }
+        } else {
+            log.warn("No Authorization header.");
+            return null;
         }
     }
 
@@ -635,24 +639,6 @@ public class KatieWeaviateConnectorController implements KatieConnectorControlle
             log.error("" + result.getError().getMessages());
         } else {
             log.info("Index value result: " + result.getResult());
-        }
-    }
-
-    /**
-     * Get JWT from Authorization request header
-     */
-    private String getJWT(HttpServletRequest request) {
-        String authorizationHeader = request.getHeader("Authorization");
-        if (authorizationHeader != null) {
-            if (authorizationHeader.indexOf("Bearer") >= 0) {
-                return authorizationHeader.substring("Bearer".length()).trim();
-            } else {
-                log.warn("Authorization header does not contain prefix 'Bearer'.");
-                return null;
-            }
-        } else {
-            log.warn("No Authorization header.");
-            return null;
         }
     }
 }
