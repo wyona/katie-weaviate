@@ -22,13 +22,13 @@ Build and deploy inside Tomcat
 ------------------------------
 
 * sh build.sh
-* http://127.0.0.1:8080/hello-world-webapp-1.0.0-SNAPSHOT/
+* http://127.0.0.1:8080/katie-weaviate-connector-1.0.0-SNAPSHOT/
 
 Build and run from command line
 -------------------------------
 
 * mvn clean install
-* java -jar target/hello-world-webapp-1.0.0-SNAPSHOT.war
+* java -jar target/katie-weaviate-connector-1.0.0-SNAPSHOT.war
 * http://localhost:8383/ (see server.port inside src/main/resources/application.properties)
 
 Docker
@@ -36,10 +36,10 @@ Docker
 
 * Build webapp as jar file (see pom.xml)
 * Start Docker
-* Build image: docker build -t spring-boot-hello-world .
+* Build image: docker build -t katie-weaviate-connector .
 * Show images: docker images
 ** Remove image: docker rmi -f IMAGE ID
-* Run image: docker run -p 8383:8383 spring-boot-hello-world
+* Run image: docker run -p 8383:8383 katie-weaviate-connector
 * Show docker processes: docker ps
 * Stop specific docker process: docker stop CONTAINER ID
 * Request in browser: http://127.0.0.1:8383/swagger-ui.html
@@ -51,10 +51,11 @@ https://www.yulup.com/en/projects/fe937e1d-3bb4-4012-a963-04848bd955ba/index.htm
 
 IntelliJ IDEA
 -------------
+
 * Start IntelliJ
 * File -> New -> Project from Version Control -> Git
-** https://github.com/wyona/spring-boot-hello-world-rest
-*** https://github.com/wyona/spring-boot-hello-world-rest.git
+** https://github.com/wyona/katie-weaviate
+*** https://github.com/wyona/katie-weaviate.git
 * Set JDK (see Version above)
 * Reimport All Maven Projects
 * Run clean/install

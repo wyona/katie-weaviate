@@ -17,7 +17,7 @@
 -->
 
     <groupId>org.wyona</groupId>
-    <artifactId>hello-world-webapp</artifactId>
+    <artifactId>katie-weaviate-connector</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>
