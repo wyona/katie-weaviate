@@ -188,6 +188,9 @@ public class KatieWeaviateConnectorController implements KatieConnectorControlle
      */
     private boolean isAuthorized(HttpServletRequest request) {
         String jwtToken = getJWT(request);
+        if (jwtToken == null) {
+            return false;
+        }
         log.info("Issuer: " + jwtService.getPayloadValue(jwtToken, "iss"));
         // TODO: Retrieve public key from https://ukatie.com/swagger-ui/#/authentication-controller/getJWTPublicKeyUsingGET
         if (jwtService.isJWTValid(jwtToken, null)) {
