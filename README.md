@@ -12,7 +12,7 @@
 * Test Weaviate: http://localhost:8080/v1
 * Add Schema using the shell script described below: sh weaviate-schema.sh
 * Verify Schema: http://localhost:8080/v1/schema
-* Index Katie domain with Weaviate (Make sure to configure weaviate.host inside applicatio(-dev).properties
+* Index Katie domain with Weaviate (Make sure to configure weaviate.host inside application(-dev).properties
 * Verify Objects: http://localhost:8080/v1/objects
 
 ## Schema
