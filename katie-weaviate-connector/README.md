@@ -2,6 +2,9 @@
 
 Katie Weaviate Connector webapp, in order to connect Katie with Weaviate using REST interfaces
 
+* http://127.0.0.1:8383/api/v2
+* http://127.0.0.1:8383/swagger-ui/?urls.primaryName=API%20V2
+
 ## Requirements
 
 * JDK: 1.11 (e.g. on Mac OS X: export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.11.jdk/Contents/Home)
