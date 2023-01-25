@@ -3,6 +3,7 @@ package org.wyona.webapp.services;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.*;
@@ -21,6 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class JwtService {
 
+    @Value("${authorization.header.required}")
+    private Boolean authorizationHeaderRequired;
+
     @Autowired
     public JwtService() {
     }
@@ -30,6 +34,10 @@ public class JwtService {
      * @return true when authorized and false otherwise
      */
     public boolean isAuthorized(HttpServletRequest request) {
+        if (!authorizationHeaderRequired) {
+            log.warn("JWT Authentication / Authorization disabled");
+            return true;
+        }
         String jwtToken = getJWT(request);
         if (jwtToken == null) {
             return false;
